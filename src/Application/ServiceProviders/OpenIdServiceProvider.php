@@ -30,7 +30,7 @@ class OpenIdServiceProvider extends AbstractServiceProvider
             $openId = new LightOpenID($url->getHost());
 
             $openId->identity = 'http://steamcommunity.com/openid';
-            $openId->returnUrl = $url->getHost() . '/login/steam/openid/callback';
+            $openId->returnUrl = 'http://' . $url->getAuthority() . '/login/steam/openid/callback';
 
             return $openId;
         });
