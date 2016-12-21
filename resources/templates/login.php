@@ -1,6 +1,8 @@
-<?php $this->layout('app') ?>
+<?php $this->layout('app', [
+    'bodyClasses' => 'page-login',
+]) ?>
 
-<div class="row">
+<div class="login">
     <a href="/login/steam/openid" class="waves-effect waves-light btn">
         Login with steam
     </a>
