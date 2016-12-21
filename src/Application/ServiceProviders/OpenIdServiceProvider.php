@@ -3,6 +3,7 @@
 namespace Gathers\Application\ServiceProviders;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use League\Uri\Schemes\Http;
 use LightOpenID;
 
 class OpenIdServiceProvider extends AbstractServiceProvider
@@ -24,10 +25,12 @@ class OpenIdServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $this->container->share(LightOpenID::class, function () {
-            $openId = new LightOpenID('localhost:8888');
+            $url = Http::createFromServer($_SERVER);
+
+            $openId = new LightOpenID($url->getHost());
 
             $openId->identity = 'http://steamcommunity.com/openid';
-            $openId->returnUrl = 'http://localhost:8888/login/steam/openid/callback';
+            $openId->returnUrl = $url->getHost() . '/login/steam/openid/callback';
 
             return $openId;
         });
