@@ -4,6 +4,7 @@ namespace Gathers\Application\ServiceProviders;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Plates\Engine;
+use SteamId;
 
 class TemplatingServiceProvider extends AbstractServiceProvider
 {
@@ -26,7 +27,10 @@ class TemplatingServiceProvider extends AbstractServiceProvider
         $this->container->share(Engine::class, function () {
             $engine = new Engine(__DIR__.'/../../../resources/templates');
 
-            $engine->addData(['authenticated' => isset($_SESSION['steam_id'])]);
+            $engine->addData([
+                'authenticated' => isset($_SESSION['steam_id']),
+                'steamUser' => isset($_SESSION['steam_id']) ? SteamId::create($_SESSION['steam_id']) : null,
+            ]);
 
             return $engine;
         });

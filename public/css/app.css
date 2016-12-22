@@ -8,7 +8,7 @@ body {
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
     color: #fff;
-    font-family: Arial;
+    font-family: Arial, 'sans-serif';
 }
 
 body.page-login {
@@ -23,7 +23,8 @@ a {
 }
 
 nav {
-    background: #3498db;
+    background: #eee;
+    /*border-bottom: 1px solid #2c3e50;*/
 }
 
 nav ul {
@@ -34,6 +35,7 @@ nav ul {
 main {
     background: #fff;
     height: 100vh;
+    margin: 15px 0 0;
 }
 
 .page-login main {
